@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+    <style>
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://external-preview.redd.it/e_WvRTzU3h8NRiSkXxtrDzSxL89fFBwXiSA-wTmvSCI.png?auto=webp&s=763b39be53f75339c6e7a95911345175709d2800');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+        }
+
+        header {
+            background-color: #8d9296;
+            padding: 10px;
+            opacity: 0.8;
+        }
+        div {
+            background-color: #5f6366;
+            padding: 10px;
+            opacity: 0.9;
+
+        }
+
+        nav {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            background-color: #2980b9;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: #f3f3f3;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        input[type="file"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input[type="file"]:hover, select:hover {
+            border-color: #3498db;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            margin: 0 15px 30px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Fauzan Andriana Rachman</h1>
+    </div>
+    
+
+    <header>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Setting</a>
+        </nav>
+    </header>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Choose Image(s):</label>
+        <input type="file" name="file" id="file" multiple accept="image/*">
+
+        <label for="operation">Choose Operation:</label>
+        <select name="operation" id="operation">
+            <option value="brightness">Brightness</option>
+            <option value="smoothing">Smoothing</option>
+            <option value="sharpening">Sharpening</option>
+            <option value="blurring">Blurring</option>
+            <option value="grayscale">Grayscale</option>
+            <option value="edge_detection">edge detection</option>
+            <option value="crop">Crop</option>
+        </select>
+
+        <button type="submit">Upload & Process</button>
+    </form>
+
+    {% if processed_paths %}
+        <h2>Processed Images:</h2>
+        <ul>
+            {% for processed_path in processed_paths %}
+                <li>
+                    <img src="{{ processed_path }}" alt="Processed Image">
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
